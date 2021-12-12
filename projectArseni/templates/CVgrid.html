@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/CVgrid.css') }}">
+</head>
+<body>
+    {% include "header.html" %}
+    <script src="{{ url_for('static', filename='../static/js/CV.js') }}"></script>
+    <button onclick="myName()">What is my name?</button>
+    <div class="container">
+        <div class="item1">Erlich Alon- Industrial Engineering and Management, BGU, looking for a professional student position
+        </div>
+        <div class="item2">Contact Information </br>
+            Email
+            alonerlich30@gmail.com </br>
+            Phone +972 (54) 6210987
+        </div>
+        <div class="item3">Programming Tools </br>
+                JAVA, SQL, VBA, R
+        </div>
+        <div class="item4">Languages </br>
+            Hebrew
+            Native </br>
+            English
+            Very Good
+        </div>
+        <div class="item5">
+            Education</br>
+            October 2018 - Current </br>
+            BSc student
+            Industrial engineering and management
+            Ben Gurion University </br>
+            • Expertise in Wise Systems</br>
+            September 2010 - June 2013 </br>
+            Hadarim high school, Hod HaSharon
+        </div>
+        <div class="item6">Awards</br>
+            October 2018- October 2019</br>
+            BSc student appreciation award</br>
+            October 2019- October 2020</br>
+            BSc student Certificate of Excellence award: Dean's Outstanding
+        </div>
+        <div class="item7 "><h2>Contact Form</h2>
+            <form >
+                <label for="name">Name (4 to 8 characters):</label>
+                <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10"> <br>
+                <p id="demo"></p>
+
+                <label for="lname">Last Name (4 to 8 characters):</label>
+                <input type="text" id="lname" name="name" required minlength="4" maxlength="8" size="10"><br>
+                <p id="demo2"></p>
+
+                <label for="subject">Subject</label><br>
+                <textarea id="subject" name="subject" required minlength="20" placeholder="Write something.." style="height:100px"></textarea><br>
+                <button onclick="myFunction()">OK</button>
+                <p id="demo3"></p>
+            </form>
+        </div>
+        <div class="item8 "><h2>Linkedin</h2>
+            <a href="https://www.linkedin.com/in/alon-erlich-14782b213/">My Linkedin Profile</a>
+        </div>
+
+    </div>
+</body>
+</html>

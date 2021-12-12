@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>ex8</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+</head>
+<body>
+    {% include "header.html" %}
+    <h1 id="myname">My Hobbies: </h1>
+    <ul>
+        {%for i in hobbies %}
+            {% if i == "web!!!!!!!" %}
+                <li >{{i | upper() }}</li>
+            {% else %}
+                <li >{{i}}</li>
+            {% endif %}
+        {%endfor%}
+    </ul>
+    {% if hobbies | length() < 7 %}
+        <p> I am board, looking for a nice hobby!</p>
+    {% else %}
+        <p> I have too many hobbies, I have no time for my mom!</p>
+    {% endif %}
+    {% extends "base.html" %}
+        {% block main_content %}
+        <h2> some info about me</h2>
+        {{ super() }}
+        {% endblock %}
+
+</body>
+</html>
