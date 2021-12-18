@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <title>ex9</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+</head>
+<body>
+    {% include "header.html" %}
+    <h1>search Form:</h1>
+    <p>type yor search</p>
+    <form name="search" method=GET" action="assignment9">
+        <input name="email" type="text" id="email" placeholder="email search">
+        <input type="submit" value="search">
+    </form>
+
+    {%if session['login'] == True%}
+        <p> you can not register  because you are logged in</p>
+    {% else %}
+        <h1>Register Form:</h1>
+        <form name="register" method="POST" action="assignment9">
+            <p>sign Up</p>
+            <input name="NICKNAME"   placeholder="NICKNAME"><br>
+            <input name="firstName" placeholder="first name"><br>
+            <input name="lastName" placeholder="last name"><br>
+            <input name="email" type = email  placeholder="email"><br>
+            <input name="password" type = password  placeholder="password"><br>
+            <input type="submit" value="sign up"><br>
+        </form>
+    {% endif %}
+
+    {% if search %}
+        {% if find == False %}
+            <h2>email is invalid</h2>
+        {% elif find == True %}
+                {%for item in user.values() %}
+                    <ul>
+                    {%for i in item.values() %}
+                        <li >{{i}}</li>
+                    {%endfor%}
+                    </ul>
+                {%endfor%}
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
+
