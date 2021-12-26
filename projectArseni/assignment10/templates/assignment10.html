@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex10</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+</head>
+<body>
+    {% include "header.html" %}
+
+<h1>{{message}}</h1>
+
+<h2>Insert A User:</h2>
+<form name="insert" method="POST" action="/insert">
+    <input name="NIACKNAME" type="text" placeholder="nick name"><br>
+    <input name="firstName" type="text" placeholder="first name"><br>
+    <input name="lastName" type="text" placeholder="last name"><br>
+    <input name="email" type="email" placeholder="email"><br>
+    <input name="password" type="password" placeholder="password"><br>
+    <input type="submit" value="submit">
+</form>
+
+<h2>Update details:</h2>
+<form name="update" method="POST" action="/update">
+    <input name="nick" type="text" placeholder="nick name"><br>
+    <input name="firstName" type="text" placeholder="first name"><br>
+    <input name="lastName" type="text" placeholder="last name"><br>
+    <input name="email" type="email" placeholder="email"><br>
+    <input name="password" type="password" placeholder="password"><br>
+    <input type="submit" value="submit">
+</form>
+
+<h2>Update details:</h2>
+<form name="delete"  method="POST"   action="/delete">
+    <input name="email" type="email" placeholder="email"><br>
+    <input type="submit" value="submit">
+</form>
+
+
+<h2>The Users Of The Website:</h2>
+<ul>
+    {% for user in myUsers %}
+        <li>
+            nick Name:<b> {{ user.NICKNAME }}</b> <br>
+            first name:<b> {{ user.name }}</b><br>
+            last name:<b> {{ user.lastName }}</b><br>
+            email:<b> {{ user.email }}</b><br>
+            password:<b> {{user.password}}</b><br>
+        </li>
+    <br>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

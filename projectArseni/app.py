@@ -1,4 +1,5 @@
-from flask import Flask, render_template,redirect, url_for,request,session
+from flask import Flask, render_template,redirect, url_for,request,session, blueprints, jsonify
+import mysql, _mysql_connector
 
 app = Flask(__name__)
 app.secret_key = '12345'
@@ -8,6 +9,10 @@ users ={"user1": {"NICKNAME": "lel", "name": "Alon","lastName": "Erlich", "email
         "user3": {"NICKNAME": "fun", "name": "Dan", "lastName": "Lev", "email": "ss@gmail.com", "password": 12345},
         "user4": {"NICKNAME": "dud", "name": "Sarah", "lastName": "Netanyahu", "email": "sarah@gmail.com", "password": 1233345},
         "user5": {"NICKNAME": "dandan", "name": "Dan", "lastName": "Mano", "email": "mani@gmail.com", "password": 1234533}}
+
+
+from assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
 
 
 @app.route("/about")
@@ -73,4 +78,4 @@ def logOut():
     return render_template('assignment9.html')
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug = True)
