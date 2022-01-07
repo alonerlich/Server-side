@@ -1,5 +1,6 @@
-from flask import Flask, render_template,redirect, url_for,request,session, blueprints, jsonify
-import mysql, _mysql_connector
+from flask import Flask, render_template,redirect, url_for,request,session, jsonify
+import requests
+from assignment10.assignment10 import interact_db
 
 app = Flask(__name__)
 app.secret_key = '12345'
@@ -76,6 +77,49 @@ def assignment9():
 def logOut():
     session['login'] = False
     return render_template('assignment9.html')
+
+#------------assignment11---------
+def get_users():
+    query = "select * from web.users"
+    query_result = interact_db(query=query, query_type='fetch')
+    dic = {}
+
+    i = 1
+    for row in query_result:
+        user = {
+            'nick name': row.NICKNAME,
+            'name': row.name,
+            'last name': row.lastName,
+            'email': row.email,
+            'password': row.password,
+        }
+        name = f'user{i}'
+        dic[name] = user
+        i+=1
+    return jsonify(dic)
+
+@app.route('/assignment11/users', methods=['GET', 'POST'])
+def return_all_users():
+    users = get_users()
+    return users
+
+def get_user(id):
+    f'https://reqres.in/api/users/{id}'
+    res = requests.get(f'https://reqres.in/api/users/{id}')
+    return res.json()
+
+@app.route('/assignment11/outer_source', methods=['GET', 'POST'])
+def outer_source():
+    if "id" in request.args:
+        if request.args['id'] == '':
+            return render_template('assignment11.html', user = '')
+        n = int(request.args['id'])
+        user = get_user(n)
+    else:
+        user = ""
+    return render_template('assignment11.html', user=user)
+
+
 
 if __name__=="__main__":
     app.run(debug = True)

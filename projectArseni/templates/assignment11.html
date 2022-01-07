@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Get User</title>
+</head>
+<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+
+    {% include "header.html" %}
+    <br>
+
+
+    <h1>Req Frontend (js):</h1>
+    <input name="js" type="number" id="js" placeholder="enter id">
+    <button onclick="getUsers()"> ask </button>
+    <div> </div>
+
+    <script src="../static/js/fetch_example.js" ></script>
+
+    <br>
+
+    <h1>Req Frontend (python):</h1>
+    <form name="back_end" method="GET" action="/assignment11/outer_source">
+        <input name="id" type="number" id="id" placeholder="enter id">
+        <input type="submit" value="ask">
+    </form>
+     <br>
+    {% if user != '' and user != {} %}
+        <h2>The user you requested: </h2>
+        <h3>data:</h3>
+        <p>ID: {{ user.data.id }}</p>
+        <p>Email: {{ user.data.email }}</p>
+        <p>First Name: {{ user.data.first_name }}</p>
+        <p>Last Name: {{ user.data.last_name }}</p>
+        <img src="{{ user.data.avatar }}" alt="pic"><br>
+        <h3>support:</h3>
+        <p>Url: {{ user.support.url }}</p>
+        <p>Text: {{ user.support.text }}</p>
+    {% endif %}
+</body>
+</html>
