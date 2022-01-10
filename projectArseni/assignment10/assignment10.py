@@ -57,7 +57,8 @@ def insert():
         if len(find) > 0: # if already exist
             message ='email is exist,please try another email'
         else:
-            query = "insert into web.users values ('%s', '%s', '%s','%s','%s');" % (NIACKNAME, firstName, lastName, email, password)
+            query = "insert into web.users(NICKNAME,name,lastName,email,password)" \
+                    " values ('%s', '%s', '%s','%s','%s');" % (NIACKNAME, firstName, lastName, email, password)
             interact_db(query=query, query_type='commit')
             message = 'great! thanks for registering'
         session['message'] = message

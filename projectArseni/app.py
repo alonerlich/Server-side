@@ -47,7 +47,7 @@ def assignment9():
         if current_method == 'GET':
             if 'email' in request.args:
                 email = request.args['email']
-                if email is '':
+                if email == '':
                     return render_template('assignment9.html', search=True, find=True, user=users)
                 dic = {}
                 i=0
@@ -119,6 +119,31 @@ def outer_source():
         user = ""
     return render_template('assignment11.html', user=user)
 
+#------------assignment12--------- ברוך השם
+
+@app.route('/assignment12/restapi_users', defaults={'USER_ID': -1})
+@app.route("/assignment12/restapi_users/<int:USER_ID>")
+def restapi_users(USER_ID):
+    if USER_ID == -1:
+        USER_ID = 1     #default user
+    return_dict = {}
+    query = "select * from users where id= '%s';" % USER_ID
+    user = interact_db(query=query, query_type='fetch' )
+    if len(user) > 0:
+        return_dict[f'user_{USER_ID}'] ={
+            'status': 'success',
+            'nick name': user[0].NICKNAME,
+            'name': user[0].name,
+            'last name': user[0].lastName,
+            'email': user[0].email,
+            'password': user[0].password,
+        }
+    else:
+        return_dict = {
+            'status': 'failed',
+            'message': 'user not found!!!'
+        }
+    return jsonify(return_dict)
 
 
 if __name__=="__main__":
